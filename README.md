@@ -23,11 +23,14 @@ npx expo start
 
 ```
 ### Database Configuration
-
+```bash
 Edit the application.properties file in the src/main/resources directory.
 spring.datasource.url=jdbc:postgresql://localhost:5432/lingerdb
 spring.datasource.username=your_username
 spring.datasource.password=your_password
+
+```
+### Backend Setup
 
 ```bash 
 cd linger-end
@@ -37,4 +40,9 @@ mvn spring-boot:run
 The backend server will now be running at:
 👉 http://localhost:8080/
 
+## 💡 Contributing
+Pull Requests are welcome. For major changes, please open an issue first.
+
+## 📜 License
+[MIT](./LICENSE)
 
