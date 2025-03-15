@@ -2,6 +2,7 @@ import { Stack } from "expo-router";
 import "../global.css"
 import { useFonts } from "expo-font";
 import { ThemeContextApiProvider } from "../contextApis/themeContextApi";
+import { CLIENT_ENDPOINTS } from "../constants/API";
 
 
 export default function RootLayout() {
@@ -17,11 +18,15 @@ export default function RootLayout() {
  
   return (
   <ThemeContextApiProvider>
-    <Stack 
-    screenOptions={{headerShown:false}} >
-      <Stack.Screen name="register" options={{}} />
-      <Stack.Screen name="login" options={{}} />
-      <Stack.Screen name="(dash)" options={{}} />
+    <Stack >
+      <Stack.Screen name={CLIENT_ENDPOINTS.index} options={{headerShown:false}} />
+      <Stack.Screen name={CLIENT_ENDPOINTS.auth.register} options={{headerShown:false}} />
+      <Stack.Screen name={CLIENT_ENDPOINTS.auth.login} options={{headerShown:false}} />
+      <Stack.Screen name={CLIENT_ENDPOINTS.auth.dash} options={{headerShown:false}} />
+      <Stack.Screen name={CLIENT_ENDPOINTS.auth.verify} options={{headerShown:false}} />
+     
+      <Stack.Screen name={CLIENT_ENDPOINTS.auth.codeSent} options={{title:"Forgot Password"}}  />
+     
     </Stack>
   </ThemeContextApiProvider>
   )

@@ -5,6 +5,7 @@ package com.example.linger.constants;
  */
 public class ErroMessageConstants {
 	public static		 String			SOMETING_WENT_WRONG							="Something went wrong";
+	public static		 String			USERNAME_IS_NOT_VALID						="Usernmae Is Not Valid";
 	public static		 String		 	USER_ALREADY_EXIST_MESSAGE					="username already present choose diffrent";
 	public static		 String		 	EMAIL_ALREADY_EXIST_MESSAGE					="email already present choose diffrent";
 	public static		 String		 	USER_NOT_FOUND_MESSAGE						="username not found";	

@@ -35,17 +35,17 @@ public class UserRepoImpl implements UserRepo {
 											usersRegistrationPhaseOne.getPassword(),
 											DefaultConstants.DEFUALT_ROLE,
 											};
-		Integer			rowaffected	=		0;	
+		Integer			userId	=		0;	
 		try {
 			
-			rowaffected		=   jdbcTemplate.update(sqlConstants.INSERT_USERS_IN_TO_USER_TABLE,data);
+			userId		=   jdbcTemplate.queryForObject(sqlConstants.INSERT_USERS_IN_TO_USER_TABLE,new UserRowMapper.GetTheUserId(),data);
 			
 			
-			return rowaffected;
+			return userId;
 		}
 		catch(Exception ex) {
 			data		=	null;
-			rowaffected	=	null;
+			userId		=	null;
 			throw new MyCustomeException(ex.getMessage());
 		}
 		

@@ -5,13 +5,18 @@ import com.example.linger.enums.ResponseModel;
 import com.example.linger.exception.MyCustomeException;
 import com.example.linger.model.User;
 
+import jakarta.mail.MessagingException;
+
 /**
  * Author: Naveen Saini
  * Date: 09-Mar-2025	
  */
 public interface UserService {
-	   public int insertUserPhaseOne(UsersRegistrationPhaseOne usersRegistrationPhaseOne) throws MyCustomeException;
+	   public int insertUserPhaseOne(UsersRegistrationPhaseOne usersRegistrationPhaseOne) throws MyCustomeException, MessagingException;
 	   public User  findTheUserByEmail(String email) throws MyCustomeException;
 	   public ResponseModel<Boolean> checkIfTheUsernameExist(String username)throws MyCustomeException; 
-
+	   public String getAccessTokenFromGoogle(String code,String redirectUri);
+	   public UsersRegistrationPhaseOne getUserInfoFromGoogle(String accessToken);
+	   public ResponseModel<Boolean> genrateThecode(String email) throws MyCustomeException, MessagingException ;
+	
 }

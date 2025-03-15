@@ -1,8 +1,11 @@
 package com.example.linger.controller.usercontroller;
 
 
+import java.io.IOException;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.linger.config.jwttoken.JwtUtils;
@@ -26,7 +30,10 @@ import com.example.linger.enums.ResponseModel;
 import com.example.linger.enums.ResponseModelsType;
 import com.example.linger.exception.MyCustomeException;
 import com.example.linger.service.UserService;
+import com.example.linger.util.CommonUtil;
 
+import jakarta.mail.MessagingException;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
 
@@ -52,39 +59,49 @@ public class UserLoginAndRegisterController
 
 	@Autowired
 	JwtUtils jwtUtils;
+	
+	@Autowired
+	CommonUtil commonUtil;
+	
 	@Autowired
 	private ModelMapper modelMapper;
 	
 
+	
 
-	public UserLoginResponseDto getTheLoginWithToken(UsersLoginDto userLoginDto) {
+	public UserLoginResponseDto getTheLoginWithToken(UsersLoginDto userLoginDto) throws MyCustomeException  {
 		System.out.println("========= login  ===============" + userLoginDto);
+		UserLoginResponseDto userResponseDto	=	null;
+		String 				 jwt 				=	null; 
 
+	try {
 
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(userLoginDto.getEmail(), userLoginDto.getPassword()));
-		
 
-		
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		String jwt = jwtUtils.generateJwtToken(authentication);
-		
-
+		jwt = jwtUtils.generateJwtToken(authentication);
 
 		MyUserDetailImpl userDetails = (MyUserDetailImpl) authentication.getPrincipal();
 //		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
 //				.collect(Collectors.toList());
-		
 		System.out.println("MYUserDetailsImpl"+userDetails.user.toString());
-	   UserLoginResponseDto userResponseDto=modelMapper.map(userDetails.user,UserLoginResponseDto.class);
-	   userResponseDto.setToken(jwt);
+	    
+		userResponseDto	=	modelMapper.map(userDetails.user,UserLoginResponseDto.class);
+		
+	    userResponseDto.setToken(jwt);
 		return userResponseDto;
+	}
+	catch (Exception e) {
+		System.out.println(e.getMessage());
+		throw new MyCustomeException("please Use Valid Parameters");
+	}
 
 	}
 
 	// login
 	@PostMapping("/signin")
-	public ResponseEntity<ResponseModel<UserLoginResponseDto>> authenticateUser(@Valid @RequestBody UsersLoginDto userLoginDto) 
+	public ResponseEntity<ResponseModel<UserLoginResponseDto>> authenticateUser(@Valid @RequestBody UsersLoginDto userLoginDto) throws MyCustomeException 
 	{
 		System.out.println("========= login  ===============" + userLoginDto);
 
@@ -96,8 +113,8 @@ public class UserLoginAndRegisterController
 
 	// register
 	@PostMapping("/signup")
-	public ResponseModel<UserLoginResponseDto> registerUser(@Valid @RequestBody UsersRegistrationPhaseOne userRegistrationPhaseOne)
-			throws MyCustomeException {
+	public  ResponseEntity<ResponseModel<UserLoginResponseDto>> registerUser(@Valid @RequestBody UsersRegistrationPhaseOne userRegistrationPhaseOne)
+			throws MyCustomeException, MessagingException {
 		
 		System.out.println("========= register  ===============");
 		
@@ -115,12 +132,7 @@ public class UserLoginAndRegisterController
 		ResponseModel<UserLoginResponseDto> response=new ResponseModel<>();
 		response.setResultType(ResponseModelsType.SUCCESS);
 		response.setData(getTheLoginWithToken(userLoginDto));
-		return response;
+		return new ResponseEntity<ResponseModel<UserLoginResponseDto>>(response,HttpStatus.OK);
 	}
-	
-	@GetMapping("/checkTheUsername/{username}")
-	public ResponseEntity<ResponseModel<Boolean>> checkTheUsernameExist(@PathVariable("username") String username) throws MyCustomeException{
-		return new ResponseEntity<ResponseModel<Boolean>>(userService.checkIfTheUsernameExist(username),HttpStatus.ACCEPTED);
-		
-	}
+
 }

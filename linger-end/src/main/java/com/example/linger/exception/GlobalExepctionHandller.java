@@ -43,7 +43,8 @@ public class GlobalExepctionHandller {
 	public ResponseEntity<ResponseModel<String>> handleException(Exception e) {
 		System.out.println("inside exception method of excetpion");
 		ResponseModel<String> response = new ResponseModel<>();
-		response.setData(e.getMessage());
+		response.setData(ErroMessageConstants.SOMETING_WENT_WRONG);
+		System.out.println("Inside the main excpetion handler and the issue is: "+e.getMessage());
 		response.setResultType(ResponseModelsType.FAIL);
 		e.printStackTrace();
 		

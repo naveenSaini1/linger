@@ -32,6 +32,7 @@ public class UserLoginResponseDto {
 	private 	int 		rating; 		
 	private 	int 		profileComplete;
 	private		String		englishLevel;
+	private     Boolean		isverified;
 	private		String		token;
 
 }

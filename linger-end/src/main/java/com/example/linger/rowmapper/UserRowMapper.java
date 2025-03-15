@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
 
 import com.example.linger.model.User;
 
@@ -38,6 +39,17 @@ public class UserRowMapper {
 		}
 		
 	}
+	
+	public static class GetTheUserId implements RowMapper<Integer>{
+
+		@Override
+		public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
+			
+			return rs.getInt("userid");
+			
+		}
+		
+	}
 
 
 	
@@ -59,6 +71,7 @@ public class UserRowMapper {
 			user.setFollowingCount(rs.getInt("followingcount"));
 			user.setAnswersCount(rs.getInt("answerscount"));
 			user.setQuestionCount(rs.getInt("questioncount"));
+			user.setIsverified(rs.getBoolean("isverified"));
 			user.setCreationTime(rs.getTimestamp("creationtime"));
 			user.setRole(rs.getString("role"));
 		}

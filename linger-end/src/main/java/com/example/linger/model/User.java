@@ -30,6 +30,7 @@ public class User {
 	private 	int 		answersCount; 	
 	private     int			questionCount;
 	private 	Timestamp 	creationTime;	
+	private     Boolean		isverified;
 	private		String		role;	
 	private 	int 		markForDelete; 
 
