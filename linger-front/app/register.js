@@ -11,6 +11,8 @@ import GoogleButton from "../components/common/GoogleButton";
 import WebView from "react-native-webview";
 import LoginWithUrl from "../components/common/LoginWithUrl";
 import { useRouter } from "expo-router";
+import { useTranslation } from "react-i18next";
+import { TRANSLATION_KEYS } from "../config/language";
 
 // Debounce function
 const debounce = (func, delay) => {
@@ -25,10 +27,12 @@ const debounce = (func, delay) => {
 
 const register = () => {
   const { register } = useMainContextApi();
-  const { fetchApi, loading, error} = useFetchApi();
+  const { fetchApi, loading, error } = useFetchApi();
   const { theme } = useTheme();
   const [showWebView, setShowWebView] = useState(false);
   const route = useRouter();
+  const { t } = useTranslation();
+
 
 
   const object = useRef({
@@ -39,6 +43,7 @@ const register = () => {
   });
 
   const [usernameMessage, setUsernameMessage] = useState("");
+  const [isUsernameTaken, setIsUsernameTaken] = useState(false);
 
   const nameValidation = (text) => text.trim().length > 2;
   const emailValidation = (text) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(text);
@@ -73,21 +78,23 @@ const register = () => {
   };
   const passwordValidation = (text) => text.length >= 6;
 
-  const checkUsername =useCallback(debounce(async (username) => {
+  const checkUsername = useCallback(debounce(async (username) => {
     if (!usernameValidation(username)) return;
-    let option ={
+    let option = {
       url: `${API_HOST_ADDRESS}${PUBLIC_PREFIX}${API_ENDPOINTS.checkIfTheUsernameExist}/${username}`,
     }
     const result = await fetchApi(option);
-
+    console.log(result)
     if (result) {
-      setUsernameMessage("Username already taken.");
+      setIsUsernameTaken(true)
+      setUsernameMessage(t(TRANSLATION_KEYS.auth.register.errors.username_taken));
       object.current.username.isValid = false;
     } else {
-      setUsernameMessage("Username is available.");
+      setIsUsernameTaken(false);
+      setUsernameMessage(t(TRANSLATION_KEYS.auth.register.messages.username_avilable));
       object.current.username.isValid = true;
     }
-  }, 500),[]);
+  }, 700), []);
 
   const putTheValuesToTheObject = async (type, data) => {
     const { value, isValid } = data;
@@ -113,7 +120,7 @@ const register = () => {
     );
 
     if (!isAllValid) {
-      alert("Please fill all fields correctly.");
+      alert(t(TRANSLATION_KEYS.auth.register.errors.please_fill_all_field_correctly));
       return;
     }
 
@@ -158,38 +165,38 @@ const register = () => {
         <View className="items-center mt-auto mb-auto">
           <View className="w-[90%]">
             <Text className="text-left text-[#282A37] text-4xl font-bold">
-              Welcome,👋
+              {t(TRANSLATION_KEYS.welcome)},👋
             </Text>
           </View>
 
           <Input
-            heading="Full Name"
-            placeholder="Enter Full Name"
+            heading={t(TRANSLATION_KEYS.auth.register.fields.full_name.label)}
+            placeholder={t(TRANSLATION_KEYS.auth.register.fields.full_name.placeholder)}
             validateFunction={nameValidation}
             handleCallback={(data) =>
               putTheValuesToTheObject("name", data)
             }
-            errorMessage="Enter Valid Name"
+            errorMessage={t(TRANSLATION_KEYS.auth.register.errors.full_name_required)}
           />
 
           <Input
-            heading="Email"
-            placeholder="Enter Email"
+            heading={t(TRANSLATION_KEYS.auth.register.fields.email.label)}
+            placeholder={t(TRANSLATION_KEYS.auth.register.fields.email.placeholder)}
             validateFunction={emailValidation}
             handleCallback={(data) =>
               putTheValuesToTheObject("email", data)
             }
-            errorMessage="Enter Valid Email"
+            errorMessage={t(TRANSLATION_KEYS.auth.register.errors.email_invalid)}
           />
 
           <Input
-            heading="Username"
-            placeholder="Enter Username"
+            heading={t(TRANSLATION_KEYS.auth.register.fields.username.label)}
+            placeholder={t(TRANSLATION_KEYS.auth.register.fields.username.placeholder)}
             validateFunction={usernameValidation}
             handleCallback={(data) =>
               putTheValuesToTheObject("username", data)
             }
-            errorMessage="Enter Valid Username"
+            errorMessage={t(TRANSLATION_KEYS.auth.register.errors.username_required)}
           />
 
           {loading ? (
@@ -197,29 +204,32 @@ const register = () => {
           ) : (
             usernameMessage && (
               <View className="w-[90%] mt-[-10px]">
-                <Text className={`text-xl ${usernameMessage.includes("taken") ? "text-red-500" : "text-green-500"}`}>
-                  {usernameMessage}
+                <Text className={`text-xl ${isUsernameTaken ? "text-red-500" : "text-green-500"}`}>
+                  {isUsernameTaken
+                    ? t(TRANSLATION_KEYS.auth.register.errors.username_taken)
+                    : t(TRANSLATION_KEYS.auth.register.messages.username_avilable)}
                 </Text>
               </View>
             )
           )}
+
           <Input
-            heading="Password"
-            placeholder="Enter your password"
+            heading={t(TRANSLATION_KEYS.auth.register.fields.password.label)}
+            placeholder={t(TRANSLATION_KEYS.auth.register.fields.password.placeholder)}
             validateFunction={passwordValidation}
             handleCallback={(data) =>
               putTheValuesToTheObject("password", data)
             }
-            errorMessage="Password must be at least 6 characters"
+            errorMessage={t(TRANSLATION_KEYS.auth.register.errors.password_min_length)}
           />
 
-          <AuthButton title={"Sign Up"} handleCallBack={submit} />
-          <Text className="text-[#282A37] mt-8 text-xl" style={{ fontFamily: theme.fontFamilyBald }}>Or</Text>
-          <GoogleButton title={"Continue With Google"} handleCallBack={handleGoogleLogin} />
+          <AuthButton title={t(TRANSLATION_KEYS.auth.register.actions.sign_up_btn)} handleCallBack={submit} />
+          <Text className="text-[#282A37] mt-8 text-xl" style={{ fontFamily: theme.fontFamilyBald }}>{t(TRANSLATION_KEYS.auth.register.actions.or)}</Text>
+          <GoogleButton title={t(TRANSLATION_KEYS.auth.register.actions.continue_with_google)} handleCallBack={handleGoogleLogin} />
 
 
 
-          <LoginWithUrl title={"Already Have Account? "} clickText={"Sign In"} handleCallBack={() => route.push(CLIENT_ENDPOINTS.auth.login)} />
+          <LoginWithUrl title={t(TRANSLATION_KEYS.auth.register.footer.already_have_account)} clickText={t(TRANSLATION_KEYS.auth.register.footer.sign_in)} handleCallBack={() => route.push(CLIENT_ENDPOINTS.auth.login)} />
 
         </View>
       </BackgroundImage>

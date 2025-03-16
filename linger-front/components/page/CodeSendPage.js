@@ -7,8 +7,10 @@ import { Text, View } from "react-native";
 import BackgroundImage from "../common/BackgroundImage";
 import AuthButton from "../common/AuthButton";
 import { CLIENT_ENDPOINTS } from "../../constants/API";
+import { useTranslation } from "react-i18next";
 
 const CodeSendPage = () => {
+    const { t } = useTranslation();
     const { sendCode,verifyCoodeForPassword} = useUserContextApi();
     const { theme } = useTheme();
     const route = useRouter();
@@ -80,14 +82,14 @@ const CodeSendPage = () => {
             <View className="items-center mt-auto mb-auto">
                 <View className="w-[90%]">
                     <Text className="text-left text-[#282A37] text-2xl font-bold mb-3">
-                        Forgot Password
+                        {t('auth.forgot_password.title')}
                     </Text>
                 </View>
 
                 {/* Email Input */}
                 <Input
-                    heading="Email"
-                    placeholder="Enter Email"
+                    heading={t('auth.forgot_password.fields.email.label')}
+                    placeholder={t('auth.forgot_password.fields.email.placeholder')}
                     validateFunction={emailValidation}
                     handleCallback={(value) => putTheValuesToTheObject("email", value)}
                     errorMessage="Enter Valid Email"

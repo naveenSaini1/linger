@@ -3,8 +3,10 @@ import { useState, useCallback } from "react";
 const useFetchApi = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  
   const fetchApi = useCallback(async ({ url, method = "GET", token = "", body = null, formData = null }) => {
+    console.log("i am calling")
+
     setLoading(true);
     setError(null);
 
@@ -22,9 +24,12 @@ const useFetchApi = () => {
     try {
       const response = await fetch(url, requestOptions);
       const result = await response.json();
+   
+
 
       if (!response.ok || result.resultType === "FAIL") {
         setError(result?.data || "Unknown Error");
+        console.log(result?.data," fetch Api Hook error")
         return null;
       }
 
@@ -37,6 +42,7 @@ const useFetchApi = () => {
       setLoading(false);
     }
   }, []);
+
 
   return { fetchApi, loading, error };
 };

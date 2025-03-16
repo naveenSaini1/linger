@@ -1,0 +1,89 @@
+{
+  "welcome": "स्वागत है",
+  "auth": {
+    "register": {
+      "title": "पंजीकरण करें",
+      "fields": {
+        "full_name": { "label": "पूरा नाम", "placeholder": "पूरा नाम दर्ज करें" },
+        "email": { "label": "ईमेल", "placeholder": "ईमेल दर्ज करें" },
+        "username": { "label": "उपयोगकर्ता नाम", "placeholder": "उपयोगकर्ता नाम दर्ज करें" },
+        "password": { "label": "पासवर्ड", "placeholder": "पासवर्ड दर्ज करें" }
+      },
+      "actions": {
+        "sign_up_btn": "साइन अप करें",
+        "or": "या",
+        "continue_with_google": "गूगल से जारी रखें"
+      },
+      "footer": {
+        "already_have_account": "क्या आपके पास पहले से खाता है?",
+        "sign_in": "साइन इन करें"
+      },
+      "errors": {
+        "full_name_required": "कृपया मान्य नाम दर्ज करें",
+        "email_required": "ईमेल आवश्यक है",
+        "email_invalid": "कृपया मान्य ईमेल दर्ज करें",
+        "username_required": "उपयोगकर्ता नाम आवश्यक है",
+        "password_required": "पासवर्ड आवश्यक है",
+        "password_min_length": "पासवर्ड की न्यूनतम लंबाई 6 होनी चाहिए",
+        "username_taken": "उपयोगकर्ता नाम पहले से लिया जा चुका है",
+        "email_taken": "ईमेल पहले से लिया जा चुका है",
+        "please_fill_all_field_correctly": "कृपया सभी फ़ील्ड सही तरीके से भरें"
+      },
+      "messages": {
+        "username_available": "उपयोगकर्ता नाम उपलब्ध है"
+      }
+    },
+    "login": {
+      "title": "लॉगिन करें",
+      "welcome_msg": "वापसी पर स्वागत है",
+      "fields": {
+        "email": { "label": "ईमेल", "placeholder": "ईमेल दर्ज करें" },
+        "password": { "label": "पासवर्ड", "placeholder": "पासवर्ड दर्ज करें" }
+      },
+      "actions": {
+        "forgot_password": "पासवर्ड भूल गए?",
+        "sign_in_btn": "साइन इन करें",
+        "or": "या",
+        "continue_with_google": "गूगल से जारी रखें"
+      },
+      "footer": {
+        "dont_have_account": "क्या आपका खाता नहीं है?",
+        "sign_up": "साइन अप करें"
+      }
+    },
+    "forgot_password": {
+      "title": "पासवर्ड भूल गए",
+      "fields": {
+        "email": { "label": "ईमेल", "placeholder": "ईमेल दर्ज करें" },
+        "code": { "label": "कोड", "placeholder": "कोड दर्ज करें" },
+        "password": { "label": "नया पासवर्ड", "placeholder": "नया पासवर्ड दर्ज करें" }
+      },
+      "actions": {
+        "send_code": "कोड भेजें",
+        "check_email": "ईमेल जांचें"
+      },
+      "errors": {
+        "email_required": "ईमेल आवश्यक है",
+        "code_required": "कोड आवश्यक है",
+        "password_required": "पासवर्ड आवश्यक है",
+        "password_min_length": "पासवर्ड की न्यूनतम लंबाई 6 होनी चाहिए"
+      }
+    },
+    "verify": {
+      "title": "अपनी पहचान सत्यापित करें",
+      "fields": {
+        "code": { "label": "कोड", "placeholder": "कोड दर्ज करें" }
+      },
+      "actions": {
+        "resend_code": "कोड फिर से भेजें",
+        "verify_btn": "सत्यापित करें",
+        "go_back": "वापस जाएं"
+      },
+      "errors": {
+        "code_required": "कोड आवश्यक है",
+        "code_invalid": "अमान्य कोड, कृपया पुनः प्रयास करें"
+      }
+    }
+  }
+}
+

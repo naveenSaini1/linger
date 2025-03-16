@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.linger.config.jwttoken.JwtUtils;
 import com.example.linger.config.security.MyUserDetailImpl;
+import com.example.linger.constants.ErroMessageConstants;
 import com.example.linger.dto.userdto.UserLoginResponseDto;
 import com.example.linger.dto.userdto.UsersLoginDto;
 import com.example.linger.dto.userdto.UsersRegistrationPhaseOne;
@@ -94,7 +95,7 @@ public class UserLoginAndRegisterController
 	}
 	catch (Exception e) {
 		System.out.println(e.getMessage());
-		throw new MyCustomeException("please Use Valid Parameters");
+		throw new MyCustomeException(ErroMessageConstants.BAD_CREDENTIAL);
 	}
 
 	}

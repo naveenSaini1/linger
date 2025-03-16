@@ -24,4 +24,5 @@ public class ErroMessageConstants {
 	public static		 String			NOT_FOUND									="NOT FOUND";
 	public static		 String			LIVE_LOCATION_ALREADY_PRESENT				="Live Location Already Present";
 	public static		 String			BAD_SQL_EXCEPTION							= "Bad exception Error";
+	public static		 String			BAD_CREDENTIAL								= "Bad Credential";
 }

@@ -1,0 +1,64 @@
+{
+    "welcome": "Bienvenido",
+    "auth": {
+      "register": {
+        "title": "Registrarse",
+        "fields": {
+          "full_name": { "label": "Nombre Completo", "placeholder": "Ingrese su Nombre Completo" },
+          "email": { "label": "Correo Electrónico", "placeholder": "Ingrese su Correo Electrónico" },
+          "username": { "label": "Nombre de Usuario", "placeholder": "Ingrese su Nombre de Usuario" },
+          "password": { "label": "Contraseña", "placeholder": "Ingrese su Contraseña" }
+        },
+        "actions": {
+          "sign_up_btn": "Registrarse",
+          "or": "o",
+          "continue_with_google": "Continuar con Google"
+        },
+        "footer": {
+          "already_have_account": "¿Ya tienes una cuenta?",
+          "sign_in": "Iniciar Sesión"
+        }
+      },
+      "login": {
+        "title": "Iniciar Sesión",
+        "welcome_msg": "Bienvenido de Nuevo",
+        "fields": {
+          "email": { "label": "Correo Electrónico", "placeholder": "Ingrese su Correo Electrónico" },
+          "password": { "label": "Contraseña", "placeholder": "Ingrese su Contraseña" }
+        },
+        "actions": {
+          "forgot_password": "¿Olvidaste tu Contraseña?",
+          "sign_in": "Iniciar Sesión",
+          "or": "o",
+          "continue_with_google": "Continuar con Google"
+        },
+        "footer": {
+          "dont_have_account": "¿No tienes una cuenta?",
+          "sign_up": "Registrarse"
+        }
+      },
+      "forgot_password": {
+        "title": "Recuperar Contraseña",
+        "fields": {
+          "email": { "label": "Correo Electrónico", "placeholder": "Ingrese su Correo Electrónico" },
+          "code": { "label": "Código", "placeholder": "Ingrese su Código" },
+          "password": { "label": "Nueva Contraseña", "placeholder": "Ingrese su Nueva Contraseña" }
+        },
+        "actions": {
+          "send_code": "Enviar Código",
+          "check_email": "Revisar Correo Electrónico"
+        }
+      },
+      "verify": {
+        "title": "Verifíquese",
+        "fields": {
+          "code": { "label": "Código", "placeholder": "Ingrese su Código" }
+        },
+        "actions": {
+          "resend_code": "Reenviar Código",
+          "verify": "Verificar",
+          "go_back": "Regresar"
+        }
+      }
+    }
+  }

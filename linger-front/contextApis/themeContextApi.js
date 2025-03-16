@@ -1,5 +1,7 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import MainContextApiProvider from "./mainContextApi";
+import { I18nextProvider } from "react-i18next";
+import { i18n, init } from "../config/i18n";
 
 const themeContextApi = createContext();
 
@@ -10,12 +12,12 @@ export const ThemeContextApiProvider = ({ children }) => {
     light: {
       background: "bg-white",
       border: "border-gray-300",
-      borderPrimaryColor:"border-[#ECEDF2]",
+      borderPrimaryColor: "border-[#ECEDF2]",
       textPrimaryColor: "text-[#515978]",
-      textSecondaryColor:"text-[#22242F]",
+      textSecondaryColor: "text-[#22242F]",
       fontFamilyRegular: "DMRegular",
-      fontFamilyMedium:"DMMedium",
-      fontFamilyBald:"DMBold"
+      fontFamilyMedium: "DMMedium",
+      fontFamilyBald: "DMBold"
     },
     dark: {
       background: "bg-gray-900",
@@ -25,7 +27,9 @@ export const ThemeContextApiProvider = ({ children }) => {
       fontFamily: "DMBold",
     }
   };
-
+  useEffect(() => {
+    init(); // Initialize localization
+  }, []);
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
@@ -34,7 +38,9 @@ export const ThemeContextApiProvider = ({ children }) => {
   return (
     <themeContextApi.Provider value={{ theme: themes[theme], toggleTheme }}>
       <MainContextApiProvider>
-         {children}
+        <I18nextProvider i18n={i18n}>
+          {children}
+        </I18nextProvider>
       </MainContextApiProvider>
     </themeContextApi.Provider>
   );

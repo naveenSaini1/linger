@@ -8,6 +8,8 @@ create table master.user (
     gender VARCHAR(10) CHECK (gender IN ('Male', 'Female', 'Other')) DEFAULT 'Male' ,
     country VARCHAR(100) DEFAULT 'India',
     profileimage VARCHAR(255) DEFAULT 'default.jpg',
+	platformlangauge VARCHAR(255) DEFAULT 'en',
+	learnlangauge VARCHAR(255) DEFAULT 'en',
     followerscount INT DEFAULT 0,
     followingcount INT DEFAULT 0,
     answerscount INT DEFAULT 0,

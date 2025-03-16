@@ -1,0 +1,108 @@
+{
+    "welcome": "Welcome",
+    "auth": {
+        "register": {
+            "title": "Register",
+            "fields": {
+                "full_name": {
+                    "label": "Full Name",
+                    "placeholder": "Enter Full Name"
+                },
+                "email": {
+                    "label": "Email",
+                    "placeholder": "Enter Email"
+                },
+                "username": {
+                    "label": "Username",
+                    "placeholder": "Enter Username"
+                },
+                "password": {
+                    "label": "Password",
+                    "placeholder": "Enter Password"
+                }
+            },
+            "actions": {
+                "sign_up_btn": "Sign Up",
+                "or": "or",
+                "continue_with_google": "Continue With Google"
+            },
+            "footer": {
+                "already_have_account": "Already have an account?",
+                "sign_in": "Sign In"
+            },
+            "errors": {
+                "full_name_required": "Enter Valid Name",
+                "email_required": "Enter Required",
+                "email_invalid": "Please Enter Valid Email",
+                "username_required": "username required",
+                "password_required": "password required",
+                "password_min_length": "minimum lenght of password 6",
+                "username_taken": "username already Taken",
+                "email_taken": "email already taken",
+                "please_fill_all_field_correctly": "please fill All The Field Correctly"
+            },
+            "messages": {
+                "username_avilable": "username avialble"
+            }
+        },
+        "login": {
+            "title": "Login",
+            "welcome_msg": "Welcome Back",
+            "fields": {
+                "email": {
+                    "label": "Email",
+                    "placeholder": "Enter Email"
+                },
+                "password": {
+                    "label": "Password",
+                    "placeholder": "Enter Password"
+                }
+            },
+            "actions": {
+                "forgot_password": "Forgot Password?",
+                "sign_in_btn": "Sign In",
+                "or": "or",
+                "continue_with_google": "Continue With Google"
+            },
+            "footer": {
+                "dont_have_account": "Don't have an account?",
+                "sign_up": "Sign Up"
+            }
+        },
+        "forgot_password": {
+            "title": "Forgot Password",
+            "fields": {
+                "email": {
+                    "label": "Email",
+                    "placeholder": "Enter Email"
+                },
+                "code": {
+                    "label": "Code",
+                    "placeholder": "Enter Code"
+                },
+                "password": {
+                    "label": "New Password",
+                    "placeholder": "Enter New Password"
+                }
+            },
+            "actions": {
+                "send_code": "Send Code",
+                "check_email": "Check Email"
+            }
+        },
+        "verify": {
+            "title": "Verify Yourself",
+            "fields": {
+                "code": {
+                    "label": "Code",
+                    "placeholder": "Enter Code"
+                }
+            },
+            "actions": {
+                "resend_code": "Resend Code",
+                "verify_btn": "Verify",
+                "go_back": "Go Back"
+            }
+        }
+    }
+}
