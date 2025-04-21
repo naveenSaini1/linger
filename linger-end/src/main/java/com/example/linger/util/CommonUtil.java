@@ -10,6 +10,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
+import com.example.linger.config.jwttoken.JwtUtils;
+import com.example.linger.config.security.MyUserDetailImpl;
+import com.example.linger.exception.MyCustomeException;
 import com.example.linger.model.User;
 
 import org.springframework.security.core.Authentication;
@@ -26,7 +29,9 @@ import jakarta.mail.internet.MimeMessage;
 public class CommonUtil {
 	
 	@Autowired
-    private  JavaMailSender mailSender;
+    private  JavaMailSender mailSender; 
+	  @Autowired
+	  private JwtUtils	jwtUtils;
 	
 	private String PASSWORD_SUBJECT	=	"Your Password Reset Code - Action Required";
 	private	String PASSWORD_BODY		=	"<!DOCTYPE html>\n" +
@@ -212,18 +217,43 @@ public class CommonUtil {
         
         
         public Integer getUserId() {
+        	 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+ 	        if (authentication != null && authentication.isAuthenticated()) {
+ 	            Object principal = authentication.getPrincipal();
+
+ 	            if (principal instanceof MyUserDetailImpl) {
+ 	                return ((MyUserDetailImpl) principal).user.getUserId();
+ 	            } 
+ 	        }
+ 	        
+ 	        return 0;
+	    }
+        
+        public String getUsername() {
+        	
 	        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	        
 	        if (authentication != null && authentication.isAuthenticated()) {
 	            Object principal = authentication.getPrincipal();
 
-	            if (principal instanceof User) {
-	                return ((User) principal).getUserId();
+	            if (principal instanceof MyUserDetailImpl) {
+	                return ((MyUserDetailImpl) principal).user.getUsername();
 	            } 
 	        }
 	        
-	        return 0;
+	        return null;
 	    }
 
+        
+        public String jwtValidationAndGetTheName(String authorizationHeader) throws MyCustomeException {
+    		String[] headerParts = authorizationHeader.split(" ");
+    		String jwt = headerParts[1];
+    		if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
+    			String username = jwtUtils.getUserNameFromJwtToken(jwt);
+    			return username;
+
+    		}
+    		throw new MyCustomeException("Token is not valid");
+
+    	}
 
 }

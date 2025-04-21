@@ -12,12 +12,14 @@ import org.springframework.web.client.RestTemplate;
 
 import com.example.linger.constants.ErroMessageConstants;
 import com.example.linger.dto.commonDto.GoogleTokenResponse;
+import com.example.linger.dto.userdto.UserProfile;
 import com.example.linger.dto.userdto.UsersRegistrationPhaseOne;
 import com.example.linger.enums.ResponseModel;
 import com.example.linger.enums.ResponseModelsType;
 import com.example.linger.exception.MyCustomeException;
 import com.example.linger.model.User;
 import com.example.linger.repo.CodeRepo;
+import com.example.linger.repo.FollowRepo;
 import com.example.linger.repo.UserRepo;
 import com.example.linger.service.UserService;
 import com.example.linger.util.CommonUtil;
@@ -36,6 +38,9 @@ public class UserServiceImpl implements UserService {
 		UserRepo usersRepo;
 		@Autowired
 		CommonUtil commonUtil;
+		
+		@Autowired
+		FollowRepo	followRepo;
 		
 		@Value("${spring.security.oauth2.client.registration.google.client-id}")
 		private String clientId;
@@ -134,8 +139,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UsersRegistrationPhaseOne getUserInfoFromGoogle(String accessToken) {
-		 String			 url 				= googleProfileUrl + accessToken;
-		 RestTemplate 	 restTemplate 		= new RestTemplate();
+		 String						 url 				= googleProfileUrl + accessToken;
+		 RestTemplate 				 restTemplate 		= new RestTemplate();
 		 UsersRegistrationPhaseOne 	 result 			= restTemplate.getForObject(url, UsersRegistrationPhaseOne.class);	
 		 System.out.println(result);
 		  return result;
@@ -165,7 +170,36 @@ public class UserServiceImpl implements UserService {
 		return response;
 	}
 
+	@Override
+	public ResponseModel<UserProfile> getTheUserProfile(String username) throws MyCustomeException {
+		if(username==null || username.equals(""))
+			throw new MyCustomeException(ErroMessageConstants.FIELD_IS_EMPTY);
+		
+		User						user					=	null;
+		ResponseModel<UserProfile>	response				=	new ResponseModel<>();
+		UserProfile					userProfile				=	new UserProfile();
+		String						logedUsername			=	commonUtil.getUsername();
 
+		
+
+		user 	= 	usersRepo.getTheUserDataByUsername(username);
+		if(user==null) {
+			throw new MyCustomeException(ErroMessageConstants.NOT_FOUND);
+			
+		}
+		response.setResultType(ResponseModelsType.SUCCESS);
+		userProfile.setName(user.getName());
+		userProfile.setBio(user.getBio());
+		userProfile.setFollowersCount(user.getFollowersCount());
+		userProfile.setFollowingCount(user.getFollowingCount());
+		userProfile.setProfileimage(user.getProfileImage());
+		userProfile.setUsername(user.getUsername());
+		userProfile.setIsFollowing 	(followRepo.checkIfTheUserFollowing(logedUsername, username)>0);
+		System.out.println(logedUsername+" ---- "+username+"  fff"+commonUtil.getUserId());
+		response.setData(userProfile);
+		
+		return response;
+	}
 
 
 }

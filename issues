@@ -1,0 +1,6 @@
+I will fixes this okay just wait..!
+
+issue No1: the user blocking system doest not exists so there would be two condition you can overide the already builded accepted and rejected macanisiom and build new one like i can accept and i can block also
+
+Issue No2:
+for messageing scable we need to use rabitmq so we can scale the messaging for it okay to just using the simplemessagebroker

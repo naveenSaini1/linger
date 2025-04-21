@@ -1,7 +1,7 @@
 import { Text, TouchableOpacity } from "react-native";
 import { useMainContextApi } from "../../contextApis/mainContextApi";
 
-const home=()=>{
+const group=()=>{
      const {logOut} = useMainContextApi();
     return (
         <>
@@ -12,4 +12,4 @@ const home=()=>{
         </>
     )
 }
-export default home;
+export default group;

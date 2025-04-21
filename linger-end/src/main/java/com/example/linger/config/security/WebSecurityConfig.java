@@ -23,7 +23,10 @@ import com.example.linger.config.jwttoken.AuthTokenFilter;
 
 
 
-
+/**
+ * Author: Naveen Saini
+ * Date: 31-Mar-2025	
+ */
 @Configuration
 @EnableMethodSecurity
 public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
@@ -68,7 +71,7 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
           auth.requestMatchers("/api/public/**","/ws/**").permitAll()
           	  .requestMatchers("/static/**").permitAll()
               .requestMatchers("/api/admin/**").hasRole("ADMIN")
-              .requestMatchers("/api/user/**")
+              .requestMatchers("/api/user/**","/api/follow/**","/api/message/**","/api/code/**")
               .hasAnyRole("USER","ADMIN")
               .anyRequest().authenticated()
         );

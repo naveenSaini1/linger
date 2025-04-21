@@ -1,5 +1,6 @@
 package com.example.linger.service;
 
+import com.example.linger.dto.userdto.UserProfile;
 import com.example.linger.dto.userdto.UsersRegistrationPhaseOne;
 import com.example.linger.enums.ResponseModel;
 import com.example.linger.exception.MyCustomeException;
@@ -18,5 +19,6 @@ public interface UserService {
 	   public String getAccessTokenFromGoogle(String code,String redirectUri);
 	   public UsersRegistrationPhaseOne getUserInfoFromGoogle(String accessToken);
 	   public ResponseModel<Boolean> genrateThecode(String email) throws MyCustomeException, MessagingException ;
-	
+	   public ResponseModel<UserProfile> getTheUserProfile(String username) throws MyCustomeException;
+	   
 }

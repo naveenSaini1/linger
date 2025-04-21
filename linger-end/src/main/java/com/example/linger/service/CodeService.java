@@ -12,5 +12,6 @@ public interface CodeService {
 
 	public ResponseModel<Boolean> verfiyTheCode(CodeDto codeDto) throws MyCustomeException;
 	public ResponseModel<Boolean> verifiyTheUserByCode(CodeDto codeDto) throws MyCustomeException;
+	public ResponseModel<String>  establishTheWebScoketConnection() throws MyCustomeException;
 
 }

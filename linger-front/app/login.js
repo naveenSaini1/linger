@@ -9,7 +9,7 @@ import AuthButton from "../components/common/AuthButton";
 import GoogleButton from "../components/common/GoogleButton";
 import WebView from "react-native-webview";
 import LoginWithUrl from "../components/common/LoginWithUrl";
-import { useRouter } from "expo-router";
+import { Redirect, useRouter } from "expo-router";
 
 // Debounce function
 const debounce = (func, delay) => {
@@ -23,11 +23,14 @@ const debounce = (func, delay) => {
 };
 
 const login = () => {
-    const { login } = useMainContextApi();
+    const { login, isUserLogedIn } = useMainContextApi();
     const { theme } = useTheme();
     const [showWebView, setShowWebView] = useState(false);
     const route = useRouter();
-
+    // if (isUserLogedIn)
+    //     return (
+    //         <Redirect href={CLIENT_ENDPOINTS.auth.dash} />
+    //     )
 
     const object = useRef({
         email: { value: "", isValid: false },
@@ -118,7 +121,7 @@ const login = () => {
                         errorMessage="Password must be at least 6 characters"
                     />
                     <View className="justify-start w-[90%]">
-                        <TouchableOpacity onPress={()=>route.push(CLIENT_ENDPOINTS.auth.codeSent)} ><Text className="text-[#166DF8]" style={{ fontFamily: theme.fontFamilyBald }}>Forget Password?</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={() => route.push(CLIENT_ENDPOINTS.auth.codeSent)} ><Text className="text-[#166DF8]" style={{ fontFamily: theme.fontFamilyBald }}>Forget Password?</Text></TouchableOpacity>
                     </View>
                     <AuthButton title={"Sign In"} handleCallBack={submit} />
                     <Text className="text-[#282A37] mt-8 text-xl" style={{ fontFamily: theme.fontFamilyBald }}>Or</Text>

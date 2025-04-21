@@ -32,6 +32,7 @@ public class User {
 	private 	Timestamp 	creationTime;	
 	private     Boolean		isverified;
 	private		String		role;	
+	private		Boolean		isactive;
 	private 	int 		markForDelete; 
 
 	

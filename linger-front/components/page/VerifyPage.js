@@ -20,7 +20,7 @@ const VerifyPage = () => {
     const [isResending, setIsResending] = useState(false);
 
     const startTimer = () => {
-        console.log("verifyTheCode", user.email);
+        // console.log("verifyTheCode", user.email);
         if (user?.email) {
             sendCode(user.email);
         }
@@ -42,7 +42,7 @@ const VerifyPage = () => {
     const codeValidation = (text) => text.length >= 1;
 
     const verifyTheCode = async () => {
-        console.log("verfiying",object);
+        // console.log("verfiying",object);
          console.log(user,"body")
         if (user?.email && codeValidation(object.current)) {
             let body =

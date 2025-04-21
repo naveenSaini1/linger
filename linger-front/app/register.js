@@ -10,7 +10,7 @@ import AuthButton from "../components/common/AuthButton";
 import GoogleButton from "../components/common/GoogleButton";
 import WebView from "react-native-webview";
 import LoginWithUrl from "../components/common/LoginWithUrl";
-import { useRouter } from "expo-router";
+import { Redirect, useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { TRANSLATION_KEYS } from "../config/language";
 
@@ -26,7 +26,13 @@ const debounce = (func, delay) => {
 };
 
 const register = () => {
-  const { register } = useMainContextApi();
+
+  const { register, isUserLogedIn } = useMainContextApi();
+  // if (isUserLogedIn)
+  //   return (
+  //     <Redirect href={CLIENT_ENDPOINTS.auth.dash} />
+  //   )
+    
   const { fetchApi, loading, error } = useFetchApi();
   const { theme } = useTheme();
   const [showWebView, setShowWebView] = useState(false);
@@ -84,7 +90,7 @@ const register = () => {
       url: `${API_HOST_ADDRESS}${PUBLIC_PREFIX}${API_ENDPOINTS.checkIfTheUsernameExist}/${username}`,
     }
     const result = await fetchApi(option);
-    console.log(result)
+    // console.log(result)
     if (result) {
       setIsUsernameTaken(true)
       setUsernameMessage(t(TRANSLATION_KEYS.auth.register.errors.username_taken));

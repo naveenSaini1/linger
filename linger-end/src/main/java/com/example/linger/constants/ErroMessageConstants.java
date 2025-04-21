@@ -8,7 +8,7 @@ public class ErroMessageConstants {
 	public static		 String			USERNAME_IS_NOT_VALID						="Usernmae Is Not Valid";
 	public static		 String		 	USER_ALREADY_EXIST_MESSAGE					="username already present choose diffrent";
 	public static		 String		 	EMAIL_ALREADY_EXIST_MESSAGE					="email already present choose diffrent";
-	public static		 String		 	USER_NOT_FOUND_MESSAGE						="username not found";	
+	public static		 String		 	USER_NOT_FOUND_MESSAGE						="username not found";
 	public static		 String 		USER_NOT_INSERTIATION_ERROR_MESSAGE			="user not inserted someting went wrong";
 	public static 		 String			FIELD_IS_EMPTY								="Field Is Empty";
 	public static		 String			PROFILE_NOT_FOUND							="Please Upload Right File";
@@ -25,4 +25,10 @@ public class ErroMessageConstants {
 	public static		 String			LIVE_LOCATION_ALREADY_PRESENT				="Live Location Already Present";
 	public static		 String			BAD_SQL_EXCEPTION							= "Bad exception Error";
 	public static		 String			BAD_CREDENTIAL								= "Bad Credential";
+	
+	// conversation message
+	public static		 String			USER_HAVE_NOT_ACCEPTED						=	"The Other User have not accepted the request til now";
+	public static		 String			NOW_WAY										=	"That can't be possible";
+	public static		 String			REQUEST_REJECTED							=	"The Other User have Rejected The request";
+
 }

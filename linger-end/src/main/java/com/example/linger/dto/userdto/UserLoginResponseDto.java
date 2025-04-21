@@ -19,20 +19,18 @@ public class UserLoginResponseDto {
 	private		String 		name; 			
 	private		String 		email; 			
 	private 	String 		bio; 			
+	private 	String 		password; 		
 	private 	String 		gender; 		
 	private 	String 		country; 		
 	private 	String 		profileImage;	
-	private 	String 		verifiedGender;	
 	private 	int 		followersCount; 
 	private 	int 		followingCount; 
 	private 	int 		answersCount; 	
 	private     int			questionCount;
-	private     int			feedBackCount;
 	private 	Timestamp 	creationTime;	
-	private 	int 		rating; 		
-	private 	int 		profileComplete;
-	private		String		englishLevel;
 	private     Boolean		isverified;
 	private		String		token;
+	private		String		role;	
+	private 	int 		markForDelete; 
 
 }

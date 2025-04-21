@@ -1,5 +1,7 @@
 package com.example.linger.service.impl;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -66,6 +68,24 @@ public class CodeServiceImpl implements CodeService{
 		}
 		response.setResultType(ResponseModelsType.SUCCESS);;
 		response.setData(true);;
+		return response;
+	}
+
+	@Override
+	public ResponseModel<String> establishTheWebScoketConnection() throws MyCustomeException {
+        String 					sessionId 			=	 UUID.randomUUID().toString();
+        String 					username			=	 commonUtil.getUsername();
+        ResponseModel<String>	response			=	 new ResponseModel<>();
+        
+        response.setResultType(ResponseModelsType.SUCCESS);
+        
+        if(codeRepo.insertSession(username, sessionId)!=0) {
+        	response.setData(sessionId);
+        	return response;
+        	
+        }
+        
+        
 		return response;
 	}
 	

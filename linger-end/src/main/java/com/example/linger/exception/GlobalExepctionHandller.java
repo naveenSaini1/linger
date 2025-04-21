@@ -25,7 +25,8 @@ public class GlobalExepctionHandller {
 		ResponseModel<String> response = new ResponseModel<>();
 		response.setData(e.getBindingResult().getAllErrors().get(0).getDefaultMessage());
 		response.setResultType(ResponseModelsType.FAIL);
-		
+		System.out.println("Inside the Method arugmentnot valid excetion handler and the issue is: "+e.getMessage());
+
 		return new ResponseEntity<ResponseModel<String>>(response, HttpStatus.BAD_GATEWAY);
 	}
 
@@ -34,6 +35,7 @@ public class GlobalExepctionHandller {
 		ResponseModel<String> response = new ResponseModel<>();
 		response.setData(e.getMessage());
 		response.setResultType(ResponseModelsType.FAIL);
+		System.out.println("Inside the my custome excpetion handler and the issue is: "+e.getMessage());
 
 		return new ResponseEntity<ResponseModel<String>>(response, HttpStatus.BAD_GATEWAY);
 
@@ -55,6 +57,7 @@ public class GlobalExepctionHandller {
 		ResponseModel<String> response = new ResponseModel<>();
 		response.setData(ex.getMessage());
 		response.setResultType(ResponseModelsType.FAIL);
+		System.out.println("Inside the NoResourceFound excpetion handler and the issue is: "+ex.getMessage());
 
 		return new ResponseEntity<ResponseModel<String>>(response, HttpStatus.BAD_GATEWAY);
     }
@@ -64,7 +67,7 @@ public class GlobalExepctionHandller {
 		ResponseModel<String> response = new ResponseModel<>();
 		response.setData(ErroMessageConstants.BAD_SQL_EXCEPTION);
 		response.setResultType(ResponseModelsType.FAIL);
-
+		System.out.println("Inside the BadSqlGrammer excpetion handler and the issue is: "+ex.getMessage());
 		return new ResponseEntity<ResponseModel<String>>(response, HttpStatus.BAD_GATEWAY);
     }
 

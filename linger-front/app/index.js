@@ -5,7 +5,10 @@ import { CLIENT_ENDPOINTS } from "../constants/API";
 
 const index=()=>{
     const {isUserLogedIn} = useMainContextApi();
-    if(isUserLogedIn)return (<Redirect href={CLIENT_ENDPOINTS.auth.dash}/>)
+    if(isUserLogedIn)
+        return (
+    <Redirect href={CLIENT_ENDPOINTS.auth.dash}/>
+)
     
     return (<Redirect href={CLIENT_ENDPOINTS.auth.register}/>)
 }

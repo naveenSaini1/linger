@@ -62,5 +62,31 @@ public class CodeRepoImpl  implements CodeRepo{
 		}
 	}
 
+	@Override
+	public Integer insertSession(String username, String session) throws MyCustomeException {
+	Object[]				data		=		{username,session};
+			
+			try {
+				return jdbcTemplate.update(sqlConstants.INSERT_INTO_SESSION,data);
+			}
+			catch(Exception ex) {
+				data	=	null;
+				throw new MyCustomeException(ex.getMessage());
+			}
+	}
+
+	@Override
+	public Integer updateSession(String session) throws MyCustomeException {
+		Object[]				data		=		{session};
+		
+		try {
+			return jdbcTemplate.update(sqlConstants.DELETE_SESSION_IF_VERFIYED,data);
+		}
+		catch(Exception ex) {
+			data	=	null;
+			throw new MyCustomeException(ex.getMessage());
+		}
+	}
+
 	
 }

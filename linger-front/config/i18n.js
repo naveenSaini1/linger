@@ -19,7 +19,7 @@ const fetchTranslations = async (language) => {
     try {
         let response = await fetch(API_ADDRESS_STATIC+LOCALE_PREFIX+"/"+language+".json")
         response = await response.json();
-        console.log(response.auth.register.messages.username_avilable)
+        // console.log(response.auth.register.messages.username_avilable)
         return response;
       } catch (error) {
         console.error(`Failed to fetch translations for ${language}:`, error);
@@ -49,7 +49,7 @@ const setupLanguage = async (language) => {
 
 const init = async () => {
     const deviceLanguage = Localization.locale.split('-')[0]; // e.g., 'en', 'es'
-    console.log(deviceLanguage,"device language init ")
+    // console.log(deviceLanguage,"device language init ")
     await setupLanguage("hi");
 };
 

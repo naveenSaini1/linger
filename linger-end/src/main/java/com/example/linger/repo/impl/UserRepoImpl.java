@@ -84,5 +84,88 @@ public class UserRepoImpl implements UserRepo {
 		}
 	}
 
+	@Override
+	public Integer updateTheFollowerCount(String username, String type) throws MyCustomeException {
+		Object[]				data		=		{username};
+		String					query		=		"";
+		if(type==DefaultConstants.INCREASE)
+			query	=	sqlConstants.INCREASE_THE_USER_FOLLOWER_COUNT;
+		else
+			query	=	sqlConstants.DECREASE_THE_USER_FOLLOWER_COUNT;
+	
+		try {
+			return jdbcTemplate.update(query,data);
+		
+		}
+		catch(Exception ex) {
+			data	=	null;
+			query	=	null;
+			throw new MyCustomeException(ex.getMessage());
+		}
+	}
+
+	@Override
+	public Integer updateTheFollowingCount(String username, String type) throws MyCustomeException {
+		Object[]				data		=		{username};
+		String					query		=		"";
+		
+		if(type==DefaultConstants.INCREASE)
+			query	=	sqlConstants.INCREASE_THE_USER_FOLLOWING_COUNT;
+		else
+			query	=	sqlConstants.DECREASE_THE_USER_FOLLOWING_COUNT;
+	
+		try {
+			return jdbcTemplate.update(query,data);
+		
+		}
+		catch(Exception ex) {
+			data	=	null;
+			query	=	null;
+			throw new MyCustomeException(ex.getMessage());
+		}
+	}
+
+	@Override
+	public Integer updateTheQuestionCount(String username, String type) throws MyCustomeException {
+		Object[]				data		=		{username};
+		String					query		=		"";
+		
+		if(type==DefaultConstants.INCREASE)
+			query	=	sqlConstants.INCREASE_THE_USER_QUESTION_COUNT;
+		else
+			query	=	sqlConstants.DECREASE_THE_USER_QUESTION_COUNT;
+	
+		try {
+			return jdbcTemplate.update(query,data);
+		
+		}
+		catch(Exception ex) {
+			data	=	null;
+			query	=	null;
+			throw new MyCustomeException(ex.getMessage());
+		}
+	}
+
+	@Override
+	public Integer updateTheAnswerCount(String username, String type) throws MyCustomeException {
+		Object[]				data		=		{username};
+		String					query		=		"";
+		
+		if(type==DefaultConstants.INCREASE)
+			query	=	sqlConstants.INCREASE_THE_USER_ANSWER_COUNT;
+		else
+			query	=	sqlConstants.DECREASE_THE_USER_ANSWER_COUNT;
+	
+		try {
+			return jdbcTemplate.update(query,data);
+		
+		}
+		catch(Exception ex) {
+			data	=	null;
+			query	=	null;
+			throw new MyCustomeException(ex.getMessage());
+		}
+	}
+
 
 }

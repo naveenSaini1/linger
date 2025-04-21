@@ -1,7 +1,7 @@
 import { ActivityIndicator, Modal, Text, View } from "react-native";
 
 const Loading = ({ loading }) => {
-    console.log(loading)
+   
     return (
         <>
             <Modal

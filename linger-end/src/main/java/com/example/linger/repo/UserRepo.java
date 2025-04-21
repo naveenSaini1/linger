@@ -16,5 +16,15 @@ public int insertUsersPhaseOne(UsersRegistrationPhaseOne usersRegistrationPhaseO
 	
 	public User getTheUserDataByUsername(String username) throws MyCustomeException;
 	
+	public Integer updateTheFollowerCount(String username,String type) throws MyCustomeException;
+	
+	public Integer updateTheFollowingCount(String username,String type) throws MyCustomeException;
+	
+	public Integer updateTheQuestionCount(String username,String type) throws MyCustomeException;
+	
+	public Integer updateTheAnswerCount(String username,String type) throws MyCustomeException;
+	
+	
+	
 
 }

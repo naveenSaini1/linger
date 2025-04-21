@@ -11,7 +11,7 @@ public class DefaultConstants {
 	public static String 				DEFUALT_ROLE						=	"ROLE_USER";
 	public static Integer 				DEFUALT_COMPLETE_PROFILE			=	10;
 	public static Integer				UPGRADE_COMPLETE_PROFILE			=   70;
-	public static Integer				DEFAULT_LIMIT_FOR_USER_SEARCH		=	2;
+	public static Integer				DEFAULT_LIMIT_FOR_USER_SEARCH		=	1;
 	public static Integer				DEFAULT_LIMIT_FOR_USER_FRIENDS		=	10;	
 	public static Integer				DEFAULT_LIMIT_FOR_FRIEND_MESSAGE	= 	10;
 	public static Integer				DEFAULT_LIMIT_FOR_FRIENDS_SEARCH	=	10;
@@ -19,6 +19,9 @@ public class DefaultConstants {
 	public static Integer				DEFAULT_LIMIT_FOR_ANSWER_LENGTH		=	300;
     public static Set<String>			REVIEWS_TYPES 						=   new HashSet();
 	public static String				REVIEW_COURSE						=	"COURSE";
+	public static String				INCREASE							=	"INCREASE";
+	public static String				DECREASE							=	"DECREASE";
+
 	
 	
 	

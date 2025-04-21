@@ -72,6 +72,7 @@ public class UserRowMapper {
 			user.setAnswersCount(rs.getInt("answerscount"));
 			user.setQuestionCount(rs.getInt("questioncount"));
 			user.setIsverified(rs.getBoolean("isverified"));
+			user.setIsactive(rs.getBoolean("isactive"));
 			user.setCreationTime(rs.getTimestamp("creationtime"));
 			user.setRole(rs.getString("role"));
 		}

@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import MainContextApiProvider from "./mainContextApi";
 import { I18nextProvider } from "react-i18next";
 import { i18n, init } from "../config/i18n";
+import { CommonContextApiProvider } from "./commonContextApi";
 
 const themeContextApi = createContext();
 
@@ -37,11 +38,13 @@ export const ThemeContextApiProvider = ({ children }) => {
 
   return (
     <themeContextApi.Provider value={{ theme: themes[theme], toggleTheme }}>
-      <MainContextApiProvider>
-        <I18nextProvider i18n={i18n}>
-          {children}
-        </I18nextProvider>
-      </MainContextApiProvider>
+      <CommonContextApiProvider>
+        <MainContextApiProvider>
+          <I18nextProvider i18n={i18n}>
+            {children}
+          </I18nextProvider>
+        </MainContextApiProvider>
+      </CommonContextApiProvider>
     </themeContextApi.Provider>
   );
 };

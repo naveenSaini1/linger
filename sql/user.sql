@@ -15,6 +15,7 @@ create table master.user (
     answerscount INT DEFAULT 0,
     questioncount INT DEFAULT 0,
     isverified BOOLEAN DEFAULT FALSE,
+	isactive   BOOLEAN DEFAULT FALSE,
     creationtime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     role VARCHAR(10) CHECK (role IN ('ROLE_USER', 'ROLE_ADMIN')) DEFAULT 'ROLE_USER',
     markfordelete INT DEFAULT 0	
